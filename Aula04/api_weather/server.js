@@ -23,9 +23,9 @@ app.get('/weather', async(req,res)=>{
         const data = response.data;
         const temperature = data.main?.temp ??0;
         const humidity = data.main?.humidity ??0;
-        const windSpeed = data.windSpeed? data.wind.speed *3.6 :0;
+        const windSpeed = data.wind?.speed? data.wind.speed *3.6 :0;
         const rainChance = data.rain?.['1h'] ?? 0;
-        const weatherCondition = data.weatherCondition?.[0]?.description ?? 'Desconhecido';
+        const weatherCondition = data.weather?.[0]?.description ?? 'Desconhecido';
 
         res.json({temperature,humidity,windSpeed,rainChance,weatherCondition});
 
