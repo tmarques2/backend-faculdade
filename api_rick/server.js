@@ -38,6 +38,21 @@ app.get('/personagens', async (req, res) => {
     }
 });
 
+// Rota para múltiplos personagens (não foi modificada, mas o erro deve ser similar)
+app.get('/personagens/multiplos', async (req, res) => {
+    const { ids } = req.query;
+    if (!ids) {
+        return res.status(400).json({ message: 'É necessário informar os IDs. Ex: ?ids=1,2,3' });
+    }
+    try {
+        const response = await axios.get(`https://rickandmortyapi.com/api/character/${ids}`);
+        res.json(response.data);
+    } catch (error) {
+        // ... (o log de erro aqui também poderia ser detalhado) ...
+        res.status(500).json({ message: 'Erro interno ao buscar os personagens.' });
+    }
+});
+
 // Rota para buscar um personagem específico pelo ID
 app.get('/personagens/:id', async (req, res) => {
     const { id } = req.params;
@@ -69,22 +84,6 @@ app.get('/personagens/:id', async (req, res) => {
             return res.status(404).json({ message: `Personagem com ID ${id} não encontrado.` });
         }
         res.status(500).json({ message: 'Erro interno ao buscar o personagem.' });
-    }
-});
-
-
-// Rota para múltiplos personagens (não foi modificada, mas o erro deve ser similar)
-app.get('/personagens/multiplos', async (req, res) => {
-    const { ids } = req.query;
-    if (!ids) {
-        return res.status(400).json({ message: 'É necessário informar os IDs. Ex: ?ids=1,2,3' });
-    }
-    try {
-        const response = await axios.get(`https://rickandmortyapi.com/api/character/${ids}`);
-        res.json(response.data);
-    } catch (error) {
-        // ... (o log de erro aqui também poderia ser detalhado) ...
-        res.status(500).json({ message: 'Erro interno ao buscar os personagens.' });
     }
 });
 
