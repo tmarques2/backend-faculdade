@@ -10,8 +10,8 @@ const router = express.Router(); // pega a rota a partir da biblioteca da biblio
 // cria o metodo post
 router.post("/", async(req, res)=>{
     try{
-        const{nome,tipo,status,ultimaManutentao,proximaManutencao}=req.body;
-        const novaMaquina = await Maquina.create({nome,tipo,status,ultimaManutentao,proximaManutencao});
+        const{nome,tipo,status,ultimaManutencao,proximaManutencao}=req.body;
+        const novaMaquina = await Maquina.create({nome,tipo,status,ultimaManutencao,proximaManutencao});
         res.status(201).json(novaMaquina);
     } catch(err) {
         res.status(400).json({error:err.message});
@@ -62,4 +62,4 @@ router.delete("/:id",async(req,res)=>{
     }
 });
 
-MediaSourceHandle.exports = router;
+module.exports = router;

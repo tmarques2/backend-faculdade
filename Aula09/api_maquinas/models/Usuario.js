@@ -4,10 +4,10 @@
 const mongoose = require("mongoose");
 
 // cria estrutura schema para o documento de usuario
-const UsuarioSchema = new mongoose.UsuarioSchema({
+const UsuarioSchema = new mongoose.Schema({
     nome:{type: String, required: true},
-    nome:{type: String, required: true}
+    email:{type: String, required: true}
 });
 
 //exporta o modelo Usuario que será utilizado nas rotas CRUD
-MediaSourceHandle.exports = mongoose.model("Usuario", UsuarioSchema);
+module.exports = mongoose.model("Usuario", UsuarioSchema);
