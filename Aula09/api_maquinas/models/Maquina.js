@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // cria a estrutura (schema) para o documento da maquina
-const MaquinaSchema = new mongoose.Schema({
+const LivroSchema = new mongoose.Schema({
     nome:{type: String, required:true},
     tipo:{type:String, required: true},
     status:{type:String, required: true},
